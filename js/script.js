@@ -10,6 +10,19 @@ const initApp = async () => {
   const headerObj = createHeader(headerParent);
   const categoryObj = createCategory(app);
 
+  const loaderWrap = createElement('div', {
+    className: 'loader-wrap'
+  });
+
+  const loader = createElement('img', {
+    className: 'loader',
+    src: '../img/loader.png'
+  });
+
+  loaderWrap.append(loader);
+
+  app.append(loaderWrap);
+
   const renderIndex = async (e) => {
     e?.preventDefault();
 
@@ -24,6 +37,7 @@ const initApp = async () => {
       return;
     }
 
+    app.removeChild(loaderWrap);
     categoryObj.mount(categories);
   };
 
@@ -31,7 +45,7 @@ const initApp = async () => {
 
   headerObj.headerLogoLink.addEventListener('click', () => renderIndex);
   headerObj.headerBtn.addEventListener('click', () => {
-     categoryObj.unmount()
+    categoryObj.unmount();
     headerObj.updateHeaderTitle('Новая категория');
   });
 };

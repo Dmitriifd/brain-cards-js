@@ -116,6 +116,13 @@ p {
   background-color: #f7bd1e;
 }
 
+.loader-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 142px);
+}
+
 .category__list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
