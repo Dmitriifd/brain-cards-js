@@ -26,7 +26,7 @@ const initApp = async () => {
 
   const loader = createElement('img', {
     className: 'loader',
-    src: '../img/loader.gif'
+    src: 'https://dmitriifd.github.io/brain-cards-js/img/loader.gif'
   });
 
   loaderWrap.append(loader);
