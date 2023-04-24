@@ -26,7 +26,7 @@ const initApp = async () => {
 
   const loader = createElement('img', {
     className: 'loader',
-    src: '../img/loader.png'
+    src: '../img/loader.gif'
   });
 
   loaderWrap.append(loader);
