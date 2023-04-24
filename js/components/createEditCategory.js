@@ -84,7 +84,7 @@ export const createEditCategory = (app) => {
     });
 
     deleteRow.addEventListener('click', () => {
-      if (confirm('Вы уверены что ъхотите удалить строку?')) {
+      if (confirm('Вы уверены что хотите удалить строку?')) {
         tr.remove();
       }
     });
@@ -123,6 +123,34 @@ export const createEditCategory = (app) => {
     tbody.append(emptyRow);
   });
 
+   const parseData = () => {
+     const cellsMain = document.querySelectorAll('.table__cell_one');
+     const cellsSecond = document.querySelectorAll('.table__cell_two');
+
+     const data = {
+       pairs: []
+     };
+
+     for (let i = 0; i < cellsMain.length; i++) {
+       const textMain = cellsMain[i].textContent.trim();
+       const textSecond = cellsSecond[i].textContent.trim();
+
+       if (textMain && textSecond) {
+         data.pairs.push([textMain, textSecond]);
+       }
+     }
+
+     if (title.textContent.trim() && title.textContent !== TITLE) {
+       data.title = title.textContent.trim();
+     }
+
+     if (btnSave.dataset.id) {
+       data.id = btnSave.dataset.id;
+     }
+
+     return data;
+   };
+
   const mount = (data = { title: TITLE, pairs: [] }) => {
     tbody.textContent = '';
     title.textContent = data.title;
@@ -138,7 +166,6 @@ export const createEditCategory = (app) => {
     tbody.append(...rows, emptyRow);
 
     btnSave.dataset.id = data.id ? data.id : '';
-
     app.append(editCategory);
   };
 
@@ -146,5 +173,5 @@ export const createEditCategory = (app) => {
     editCategory.remove();
   };
 
-  return { mount, unmount, btnSave, btnCancel };
+  return { mount, unmount, btnSave, btnCancel, parseData };
 };
